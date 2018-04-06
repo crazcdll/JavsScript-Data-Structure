@@ -1,8 +1,8 @@
 // 根据二叉树的前序遍历和中序遍历，还原二叉树
-// 中序遍历一定是 { 左子树中的节点集合 }，root，{ 右子树中的节点集合 }；
+// 中序遍历一定是 { 左子树中的结点集合 }，root，{ 右子树中的结点集合 }；
 // 而前序遍历的作用就是找到每颗子树的root位置。
 
-// 节点Node类
+// 结点Node类
 class Node {
   constructor (value, left, right) {
     this.value = value
@@ -29,12 +29,12 @@ const BTFromOrderings = (preOrder, midOrder) => {
       }
     }
     // 通过根结点的位置将中序遍历数组切割
-    let leftMidOrder = midOrder.slice(0, rootIndex)
-    let rightMidOrder = midOrder.slice(rootIndex + 1)
+    const leftMidOrder = midOrder.slice(0, rootIndex)
+    const rightMidOrder = midOrder.slice(rootIndex + 1)
 
     // 通过递归得到左右子树
-    let leftNode = BTFromOrderings(preOrder.slice(1, leftMidOrder.length + 1), leftMidOrder)
-    let rightNode = BTFromOrderings(preOrder.slice(leftMidOrder.length + 1), rightMidOrder)
+    const leftNode = BTFromOrderings(preOrder.slice(1, leftMidOrder.length + 1), leftMidOrder)
+    const rightNode = BTFromOrderings(preOrder.slice(leftMidOrder.length + 1), rightMidOrder)
 
     // 创建二叉树结点
     return new Node(preOrder[0], leftNode, rightNode)
